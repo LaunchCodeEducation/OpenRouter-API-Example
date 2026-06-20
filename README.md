@@ -30,7 +30,8 @@ This is the simplest option if you only need to run the example locally.
 2. Click the green **Code** button.
 3. Click **Download ZIP**.
 4. Unzip the downloaded file.
-5. Open the unzipped project folder on your computer.
+5. Move it to your `Documents` folder.
+6. Open the unzipped project folder on your computer using [Visual Studio Code](https://code.visualstudio.com/).
 
 > The unzipped folder may be named `OpenRouter-API-Example-main`.
 
@@ -39,6 +40,7 @@ This is the simplest option if you only need to run the example locally.
 If you already have Git installed, you can clone the repo instead.
 
 ```bash
+cd path-on-your-computer-you-want-project-to-be-cloned-to
 git clone https://github.com/LaunchCodeEducation/OpenRouter-API-Example.git
 cd OpenRouter-API-Example
 ```
@@ -51,7 +53,20 @@ cd OpenRouter-API-Example
 
 Do not add quotes, labels, or extra lines.
 
+## Open The Terminal In Visual Studio Code
+
+After you open this project folder in Visual Studio Code:
+
+1. Click **Terminal** in the top menu.
+2. Click **New Terminal**.
+3. A terminal panel will open at the bottom of the VS Code window.
+4. Make sure the terminal is in this project folder, where `hello_claude.py` is located.
+
+You will run the Python command in that VS Code terminal window.
+
 ## Run The Example
+
+Use the terminal window inside Visual Studio Code.
 
 ### macOS
 
@@ -62,6 +77,8 @@ python3 hello_claude.py
 ```
 
 ### Windows
+
+In the VS Code terminal, run:
 
 ```bat
 py hello_claude.py
