@@ -1,6 +1,4 @@
-import json
-import urllib.error
-import urllib.request
+import requests
 
 
 MODEL = "anthropic/claude-haiku-4.5"
@@ -30,36 +28,36 @@ payload = {
   ],
 }
 
-request = urllib.request.Request(
-  "https://openrouter.ai/api/v1/chat/completions",
-  data=json.dumps(payload).encode("utf-8"),
-  headers={
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json",
-  },
-  method="POST",
-)
-
 try:
-  with urllib.request.urlopen(request, timeout=60) as response:
-    body = json.loads(response.read().decode("utf-8"))
-except urllib.error.HTTPError as e:
-  error_body = e.read().decode("utf-8")
+  response = requests.post(
+    "https://openrouter.ai/api/v1/chat/completions",
+    json=payload,
+    headers={
+      "Authorization": f"Bearer {api_key}",
+      "Content-Type": "application/json",
+    },
+    timeout=60,
+  )
+  response.raise_for_status()
+  body = response.json()
+except requests.exceptions.HTTPError as e:
+  status_code = e.response.status_code
+  error_body = e.response.text
 
-  if e.code == 401:
+  if status_code == 401:
     raise SystemExit(
       "401 Unauthorized: check that claude_cred.txt contains only your LaunchCode-provided course key on a single line."
     )
 
-  if e.code == 404:
+  if status_code == 404:
     raise SystemExit(
       "404 from OpenRouter: your course key is expected to work only with anthropic/claude-haiku-4.5. See example-open-router-responses/example_404_guardrail_error.json."
     )
 
-  raise SystemExit(f"{e.code} error from OpenRouter:\n{error_body}")
-except urllib.error.URLError as e:
+  raise SystemExit(f"{status_code} error from OpenRouter:\n{error_body}")
+except requests.exceptions.RequestException as e:
   raise SystemExit(
-    f"Could not reach OpenRouter: {e.reason}. Check your internet connection and try again."
+    f"Could not reach OpenRouter: {e}. Check your internet connection and try again."
   )
 
 print(body["choices"][0]["message"]["content"])

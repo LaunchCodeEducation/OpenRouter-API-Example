@@ -4,7 +4,7 @@ This repo is a beginner-friendly example of how to send a simple Claude request 
 
 For this exercise, LaunchCode provides a course OpenRouter key. You will store that key in a local file named `claude_cred.txt` and use it with the course-approved model `anthropic/claude-haiku-4.5`.
 
-This tutorial uses only Python's standard library, so you do not need to install any extra Python packages.
+This tutorial uses the `requests` library to make the OpenRouter call.
 
 ## What You Will Learn
 
@@ -16,7 +16,30 @@ This tutorial uses only Python's standard library, so you do not need to install
 ## What You Need
 
 - Python 3 installed on your computer.
-- The LaunchCode-provided course OpenRouter key.
+
+  To check whether Python 3 is installed, open a terminal and run:
+
+  macOS or Linux:
+
+  ```bash
+  python3 --version
+  ```
+
+  Windows:
+
+  ```powershell
+  py --version
+  ```
+
+  If you see a Python version such as `Python 3.12.4`, Python 3 is installed.
+
+  If your computer says the command is not recognized, download Python 3 from `https://www.python.org/downloads/`.
+
+- Visual Studio Code installed on your computer.
+
+  If you do not have Visual Studio Code yet, download it from `https://code.visualstudio.com/Download`.
+
+- Your LaunchCode-provided OpenRouter API key.
 
 ## Get This Project On Your Computer
 
@@ -57,34 +80,135 @@ Do not add quotes, labels, or extra lines.
 
 After you open this project folder in Visual Studio Code:
 
-1. Click **Terminal** in the top menu.
-2. Click **New Terminal**.
+1. At the top of the Visual Studio Code window, click **Terminal** in the menu bar.
+2. In the dropdown menu, click **New Terminal**.
 3. A terminal panel will open at the bottom of the VS Code window.
 4. Make sure the terminal is in this project folder, where `hello_claude.py` is located.
 
+   To check your current folder:
+
+   macOS or Linux:
+
+   ```bash
+   pwd
+   ls
+   ```
+
+   Windows:
+
+   ```powershell
+   pwd
+   dir
+   ```
+
+   You should see this project folder path, and `hello_claude.py` should appear in the file list.
+
+   If you are not in the correct folder yet, use `cd` to move into it.
+
+   If you downloaded the ZIP file:
+
+   ```bash
+   cd ~/Documents/OpenRouter-API-Example-main
+   ```
+
+   If you used `git clone`:
+
+   ```bash
+   cd ~/Documents/OpenRouter-API-Example
+   ```
+
 You will run the Python command in that VS Code terminal window.
 
-## Run The Example
+## Create And Activate A Virtual Environment
+
+This project uses a local Python virtual environment named `.venv`.
+
+That keeps this project's Python package installation separate from other Python projects on your computer.
 
 Use the terminal window inside Visual Studio Code.
 
 ### macOS
 
-Use `python3`, not `python`. On many Macs, `python` may point to a different interpreter or may not be available in the way you expect.
+On macOS, use `python3` for the commands in this tutorial. Depending on how Python is installed on your Mac, `python` may point to a different interpreter or may not be available.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Windows
+
+Use the default VS Code terminal window.
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+When the environment is active, your terminal prompt usually starts with `(.venv)`.
+
+## Install The Project Dependency
+
+With the virtual environment activated, run the command for your operating system.
+
+### macOS
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+### Linux
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### Windows
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+## Run The Example
+
+Use the terminal window inside Visual Studio Code.
+
+With the virtual environment activated, run the command for your operating system.
+
+### macOS
 
 ```bash
 python3 hello_claude.py
 ```
 
+### Linux
+
+```bash
+python hello_claude.py
+```
+
 ### Windows
 
-In the VS Code terminal, run:
-
-```bat
-py hello_claude.py
+```powershell
+python hello_claude.py
 ```
 
 If everything is set up correctly, the script prints a short reply from Claude.
+
+## Deactivate The Virtual Environment
+
+When you are done working in this project, run:
+
+```bash
+deactivate
+```
 
 ## Keep Your Key Safe
 
@@ -100,19 +224,23 @@ If you later decide to store your work in Git or GitHub, make sure files that co
 ## Files In This Repo
 
 - `hello_claude.py`: the minimal Python example for the course-approved OpenRouter call.
+- `requirements.txt`: the Python dependency list for this project.
 - `example-open-router-responses/successful_call_example.json`: an example JSON response from a successful request.
 - `example-open-router-responses/example_404_guardrail_error.json`: an example JSON response returned when the request tries a model the course key cannot access.
 - `example-open-router-responses/claude-haiku-4.5_model-details.json`: reference details for the course-approved model from OpenRouter.
 
 You send the alias `anthropic/claude-haiku-4.5`, but the JSON response may show a more specific provider model version in the `model` field.
 
-## Troubleshooting
+## Common Python Errors
 
 - If Python says it cannot find `claude_cred.txt`, make sure that file is in the same folder as `hello_claude.py`.
+- `ModuleNotFoundError: No module named 'requests'` usually means your virtual environment is not activated yet, or you have not run `python -m pip install -r requirements.txt`.
 - `401 Unauthorized` usually means `claude_cred.txt` does not contain the correct key, or it contains extra whitespace or extra text.
-- `404` usually means you tried to use a model outside the access allowed for your course key. For this course, use only `anthropic/claude-haiku-4.5`.
-- If your computer says `python3` or `py` is not recognized, Python may not be installed or may not be available in your terminal yet.
+- `404 from OpenRouter` usually means you tried to use a model outside the access allowed for your course key. For this course, use only `anthropic/claude-haiku-4.5`.
+- If your computer says `python3`, `py`, or `python` is not recognized, Python may not be installed yet. If you just installed Python, close the terminal, open a new one, and try the command again.
 - If the script says it could not reach OpenRouter, check your internet connection and try again.
+- SSL certificate errors are less common with `requests`, but they can still happen on some school, work, or proxy-managed networks.
+- On Windows, if PowerShell blocks `.\.venv\Scripts\Activate.ps1`, switch the VS Code terminal profile to Command Prompt and use `.venv\Scripts\activate.bat` instead.
 
 ## OpenRouter Language
 
