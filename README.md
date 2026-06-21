@@ -1,17 +1,17 @@
 # OpenRouter Hello Claude Example
 
-This repo is a beginner-friendly example of how to send a simple Claude request through OpenRouter.
+This repo shows how to send a simple Claude request through OpenRouter.
 
-For this exercise, LaunchCode provides a course OpenRouter key. You will store that key in a local file named `claude_cred.txt` and use it with the course-approved model `anthropic/claude-haiku-4.5`.
+LaunchCode has provided you with an OpenRouter API key. Store it in `claude_cred.txt` and use it with `anthropic/claude-haiku-4.5`.
 
-This tutorial uses the `requests` library to make the OpenRouter call.
+The example uses Python and the `requests` library.
 
 ## What You Will Learn
 
-- How to keep an API key in a local file instead of pasting it into Python code.
-- How to run a Python script that sends a request to OpenRouter.
-- How to make a successful OpenRouter request to the course-approved model `anthropic/claude-haiku-4.5`.
-- How to recognize common OpenRouter error responses for this course key.
+- Store an API key in a local file instead of hard-coding it in Python.
+- Run a Python script that sends a request to OpenRouter.
+- Send a successful request to `anthropic/claude-haiku-4.5`.
+- Recognize common OpenRouter errors for this course key.
 
 ## What You Need
 
@@ -73,10 +73,8 @@ cd OpenRouter-API-Example
 ## Add Your OpenRouter Key
 
 1. In the project folder, create a file named `claude_cred.txt`.
-2. Paste the LaunchCode-provided course key into that file.
-3. Make sure the file contains only the key.
-
-Do not add quotes, labels, or extra lines.
+2. Paste your OpenRouter API key into this file, then save it.
+3. Make sure the file contains only the key, with no quotes, labels, or extra lines.
 
 ## Open The Terminal In Visual Studio Code
 
@@ -105,9 +103,9 @@ pwd
 dir
 ```
 
-You should see this project folder path, and `hello_claude.py` should appear in the file list.
+You should see the project folder path, and `hello_claude.py` should appear in the file list.
 
-If you are not in the correct folder yet, use `cd` to move into it.
+If not, use `cd` to move into the project folder.
 
 If you downloaded the ZIP file:
 
@@ -125,9 +123,7 @@ You will run the Python command in that VS Code terminal window.
 
 ## Create And Activate A Virtual Environment
 
-This project uses a local Python virtual environment named `.venv`.
-
-That keeps this project's Python package installation separate from other Python projects on your computer.
+This project uses a local virtual environment named `.venv`. It keeps this project's Python package installation separate from other Python projects on your computer.
 
 Use the terminal window inside Visual Studio Code.
 
@@ -153,7 +149,7 @@ When the environment is active, your terminal prompt usually starts with `(.venv
 
 ## Install The Project Dependency
 
-With the virtual environment activated, run the command for your operating system.
+With the virtual environment activated, run:
 
 ### macOS And Linux
 
@@ -169,9 +165,7 @@ python -m pip install -r requirements.txt
 
 ## Run The Example
 
-Use the terminal window inside Visual Studio Code.
-
-With the virtual environment activated, run the command for your operating system.
+With the virtual environment activated, run:
 
 ### macOS And Linux
 
@@ -195,9 +189,7 @@ When you are done working in this project, run:
 deactivate
 ```
 
-This returns your terminal to your normal system Python so you do not accidentally keep using this project's virtual environment in other work.
-
-If you forget, your terminal prompt usually still starts with `(.venv)`.
+This returns your terminal to the system Python. If your prompt still starts with `(.venv)`, the environment is still active.
 
 ## Keep Your Key Safe
 
@@ -208,7 +200,7 @@ If you forget, your terminal prompt usually still starts with `(.venv)`.
 
 You do not need to commit or upload anything to complete this tutorial.
 
-If you later decide to store your work in Git or GitHub, make sure files that contain secrets stay ignored and never get uploaded. See GitHub Docs: [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
+If you later use Git or GitHub, keep secret files ignored and never upload them. See GitHub Docs: [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
 
 ## Files In This Repo
 
@@ -218,7 +210,7 @@ If you later decide to store your work in Git or GitHub, make sure files that co
 - `example-open-router-responses/example_404_guardrail_error.json`: an example JSON response returned when the request tries a model the course key cannot access.
 - `example-open-router-responses/claude-haiku-4.5_model-details.json`: reference details for the course-approved model from OpenRouter.
 
-You send the alias `anthropic/claude-haiku-4.5`, but the JSON response may show a more specific provider model version in the `model` field.
+You send the alias `anthropic/claude-haiku-4.5`, but the response may show a more specific provider model in the `model` field.
 
 ## Common Python Errors
 
@@ -230,14 +222,3 @@ You send the alias `anthropic/claude-haiku-4.5`, but the JSON response may show 
 - **Could not reach OpenRouter**: Check your internet connection and try again.
 - **SSL certificate errors**: These are less common with `requests`, but they can still happen on some school, work, or proxy-managed networks. If this happens, use your Claude chat account or Claude desktop/web app to help troubleshoot the Python environment, certificate store, or proxy settings. Do not use your OpenRouter API key for troubleshooting.
 - **PowerShell blocks `.\.venv\Scripts\Activate.ps1`**: Switch the VS Code terminal profile to Command Prompt and use `.venv\Scripts\activate.bat` instead.
-
-## OpenRouter Language
-
-This example uses Claude through OpenRouter, not through Anthropic's direct API.
-
-That means:
-
-- the credential file is still named `claude_cred.txt`
-- the key is still read from a local text file at runtime
-- the network request goes to OpenRouter
-- the course-approved model is `anthropic/claude-haiku-4.5`
