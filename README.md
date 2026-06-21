@@ -216,9 +216,9 @@ You send the alias `anthropic/claude-haiku-4.5`, but the response may show a mor
 
 - **Missing `claude_cred.txt`**: If Python says it cannot find `claude_cred.txt`, make sure that file is in the same folder as `hello_claude.py`.
 - **`ModuleNotFoundError: No module named 'requests'`**: Your virtual environment is not activated yet, or you have not run the `pip install -r requirements.txt` command for your operating system.
-- **`401 Unauthorized`**: `claude_cred.txt` does not contain the correct key, or it contains extra whitespace or extra text.
+- **`401 Unauthorized`**: `claude_cred.txt` contains the wrong key, extra whitespace, or extra text. Also make sure you saved the file after pasting in your key.
 - **`404 from OpenRouter`**: You tried to use a model outside the access allowed for your course key. For this course, use only `anthropic/claude-haiku-4.5`.
 - **`python3`, `py`, or `python` is not recognized**: Python may not be installed yet. If you just installed Python, close the terminal, open a new one, and try the command again.
 - **Could not reach OpenRouter**: Check your internet connection and try again.
-- **SSL certificate errors**: These are less common with `requests`, but they can still happen on some school, work, or proxy-managed networks. If this happens, use your Claude chat account or Claude desktop/web app to help troubleshoot the Python environment, certificate store, or proxy settings. Do not use your OpenRouter API key for troubleshooting.
+- **SSL certificate errors**: These are less common with the `requests` library, but they can still happen on some school, work, or proxy-managed networks. If this happens, use your Claude chat account or Claude desktop/web app to help troubleshoot the Python environment, certificate store, or proxy settings. Do not use your OpenRouter API key for troubleshooting.
 - **PowerShell blocks `.\.venv\Scripts\Activate.ps1`**: Switch the VS Code terminal profile to Command Prompt and use `.venv\Scripts\activate.bat` instead.
